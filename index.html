@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugandhi Tea - Order Your Tea</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #050816;
+            --bg-card: #0f172a;
+            --accent: #f97316;
+            --accent-soft: rgba(249, 115, 22, 0.2);
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --border-subtle: rgba(148, 163, 184, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(16px);
+            background: linear-gradient(to bottom, rgba(15,23,42,0.92), rgba(15,23,42,0.65), transparent);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #fbbf24, #f97316 45%, #b45309 85%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+        }
+
+        .nav-links a {
+            margin-left: 1.4rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 0.15rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #f97316, #facc15);
+            border-radius: 999px;
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* SECTIONS GENERIC */
+        section {
+            padding: 3.5rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* HERO SECTION */
+        #home {
+            padding-top: 3.5rem;
+            padding-bottom: 3rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.2rem, 3vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(to right, #f97316, #facc15);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            max-width: 32rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            border-radius: 999px;
+            border: 1px solid var(--border-subtle);
+            padding: 0.3rem 0.9rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #020617;
+            background: linear-gradient(to right, #f97316, #facc15);
+            box-shadow: 0 0 22px rgba(249, 115, 22, 0.55);
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+
+        .primary-btn span {
+            font-size: 1.1rem;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px) scale(1.01);
+            filter: brightness(1.02);
+            box-shadow: 0 0 26px rgba(249, 115, 22, 0.75);
+        }
+
+        .primary-btn:active {
+            transform: translateY(1px) scale(0.99);
+            box-shadow: 0 0 12px rgba(249, 115, 22, 0.55);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tea-card {
+            position: relative;
+            padding: 1.8rem 1.6rem;
+            border-radius: 1.5rem;
+            background: radial-gradient(circle at top left, rgba(248,250,252,0.05), transparent 55%), 
+                        rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+            max-width: 18rem;
+            animation: floatUp 0.9s ease-out;
+        }
+
+        .tea-steam {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(248, 250, 252, 0.35), transparent 70%);
+            filter: blur(1px);
+            opacity: 0.8;
+            animation: steam 3s ease-in-out infinite;
+        }
+
+        .tea-cup {
+            width: 70px;
+            height: 70px;
+            border-radius: 1.8rem 1.8rem 0.7rem 0.7rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to bottom, #f97316, #b45309);
+            box-shadow: 0 12px 22px rgba(30, 64, 175, 0.85);
+            position: relative;
+        }
+
+        .tea-plate {
+            width: 90px;
+            height: 10px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(148, 163, 184, 0.65), transparent 60%);
+            margin-top: -4px;
+        }
+
+        .tea-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        .tea-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
+        .tea-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .tea-chip {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: var(--text-muted);
+        }
+
+        .glow-orbit {
+            position: absolute;
+            inset: -40px;
+            border-radius: 2rem;
+            border: 1px dashed rgba(148, 163, 184, 0.35);
+            opacity: 0.35;
+            animation: orbit 16s linear infinite;
+        }
+
+        /* ORDER SECTION */
+        #order {
+            scroll-margin-top: 70px;
+        }
+
+        .order-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 2.3rem;
+            align-items: flex-start;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-card {
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 60%), 
+                        rgba(15, 23, 42, 0.98);
+            border-radius: 1.4rem;
+            padding: 1.8rem 1.7rem 1.6rem 1.7rem;
+            border: 1px solid rgba(148, 163, 184, 0.33);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+            animation: floatUp 0.9s ease-out 0.08s backwards;
+        }
+
+        .order-card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            margin-top: 0.3rem;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.7rem;
+            border: 1px solid var(--border-subtle);
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, transform 0.08s ease;
+        }
+
+        input::placeholder {
+            color: #6b7280;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.4);
+            background: rgba(15, 23, 42, 0.95);
+            transform: translateY(-1px);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .helper-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .submit-btn {
+            margin-top: 0.7rem;
+            align-self: flex-start;
+        }
+
+        .order-info-card {
+            background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.23), transparent 55%), 
+                        rgba(15, 23, 42, 0.92);
+            border-radius: 1.4rem;
+            padding: 1.6rem 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            font-size: 0.86rem;
+        }
+
+        .order-info-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .order-info-card ul {
+            list-style: none;
+            margin-top: 0.7rem;
+        }
+
+        .order-info-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-muted);
+        }
+
+        .bullet-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            margin-top: 0.35rem;
+            background: linear-gradient(to right, #f97316, #facc15);
+        }
+
+        /* ABOUT / FOOTER */
+        #about {
+            border-top: 1px solid rgba(31, 41, 55, 0.9);
+            padding-top: 2.3rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 1.8rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #f97316;
+            margin-bottom: 0.4rem;
+        }
+
+        footer {
+            border-top: 1px solid rgba(15, 23, 42, 0.95);
+            padding: 1.2rem 1.5rem 1.6rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+
+        /* ANIMATIONS */
+        @keyframes floatUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes steam {
+            0% {
+                transform: translate(-50%, 6px) scale(0.98);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translate(-50%, -3px) scale(1.06);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, 6px) scale(0.98);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero,
+            .order-wrapper,
+            .about-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            header {
+                background: rgba(15, 23, 42, 0.96);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                padding-inline: 1rem;
+            }
+
+            section {
+                padding-inline: 1rem;
+            }
+
+            .order-card,
+            .order-info-card {
+                padding-inline: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <div class="logo-icon">🫖</div>
+                <div>
+                    <div>SUGANDHI</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.22em; text-transform: uppercase;">
+                        Fine Tea Co.
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#order">Order</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="container hero">
+            <div class="hero-text">
+                <p class="tagline">Brewed in tradition, crafted for today</p>
+                <h1>
+                    Welcome to <span class="hero-highlight">Sugandhi Tea</span><br>
+                    Order your favourite blend online.
+                </h1>
+                <p>
+                    Freshly sourced leaves, perfectly balanced blends, and a cup that feels like home. 
+                    Place your order in seconds and let Sugandhi Tea handle the rest.
+                </p>
+
+                <div class="hero-badges">
+                    <div class="badge">Freshly packed on order</div>
+                    <div class="badge">Premium Assam & Masala blends</div>
+                    <div class="badge">Pan-India delivery</div>
+                </div>
+
+                <a href="#order" class="primary-btn">
+                    Order Now
+                    <span>➜</span>
+                </a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="glow-orbit"></div>
+                <div class="tea-card">
+                    <div class="tea-steam"></div>
+                    <div class="tea-cup"></div>
+                    <div class="tea-plate"></div>
+
+                    <div class="tea-label">Sugandhi Signature Masala</div>
+                    <p class="tea-desc">
+                        Bold Assam base with hand-crushed spices. Perfect for that strong, refreshing cup.
+                    </p>
+
+                    <div class="tea-chip-row">
+                        <div class="tea-chip">Masala Tea</div>
+                        <div class="tea-chip">Assam Tea</div>
+                        <div class="tea-chip">Green Tea</div>
+                        <div class="tea-chip">Herbal & Lemongrass</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ORDER SECTION -->
+    <section id="order">
+        <div class="container order-wrapper">
+            <div>
+                <h2 class="section-title">Place Your Tea Order</h2>
+                <p class="section-subtitle">
+                    Fill in your details and select your favourite tea. Our team will confirm your order and delivery details.
+                </p>
+
+                <div class="order-card">
+                    <h2>Customer Order Form</h2>
+                    <form action="submit_order.php" method="POST">
+                        <div>
+                            <label for="customer_name">Customer Name</label>
+                            <input type="text" id="customer_name" name="customer_name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div>
+                            <label for="tea_type">Select Tea Type</label>
+                            <select id="tea_type" name="tea_type" required>
+                                <option value="" disabled selected>Choose your blend</option>
+                                <option value="Assam Tea">Assam Tea</option>
+                                <option value="Masala Tea">Masala Tea</option>
+                                <option value="Green Tea">Green Tea</option>
+                                <option value="Lemongrass Tea">Lemongrass Tea</option>
+                                <option value="Herbal Tea">Herbal Tea</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="quantity">Quantity (in packets)</label>
+                            <input type="number" id="quantity" name="quantity" min="1" placeholder="e.g. 2" required>
+                            <p class="helper-text">1 packet = 250g of tea.</p>
+                        </div>
+
+                        <button type="submit" class="primary-btn submit-btn">
+                            Place Order
+                            <span>☕</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="order-info-card">
+                <h3>Available Blends</h3>
+                <ul>
+                    <li>
+                        <span class="bullet-dot"></span>
+                        <span><strong>Assam Tea:</strong> Strong, brisk flavour for your daily morning chai.</span>
+                    </li>
+                    <li>
+                        <span class="bullet-dot"></span>
+                        <span><strong>Masala Tea:</strong> Traditional Indian spices blended with rich tea leaves.</span>
+                    </li>
+                    <li>
+                        <span class="bullet-dot"></span>
+                        <span><strong>Green Tea:</strong> Light, refreshing and perfect for mindful evenings.</span>
+                    </li>
+                    <li>
+                        <span class="bullet-dot"></span>
+                        <span><strong>Lemongrass Tea:</strong> Citrus aroma with calming notes.</span>
+                    </li>
+                    <li>
+                        <span class="bullet-dot"></span>
+                        <span><strong>Herbal Tea:</strong> Caffeine-free blends for late-night sips.</span>
+                    </li>
+                </ul>
+
+                <p style="margin-top: 1.1rem;">
+                    After placing the order, our team will get in touch with you for address & payment details.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / FOOTER -->
+    <section id="about">
+        <div class="container about-grid">
+            <div>
+                <p class="tagline">About Sugandhi Tea</p>
+                <p>
+                    Sugandhi Tea is crafted with carefully selected leaves from trusted gardens. 
+                    Each blend is curated to bring out the perfect aroma, flavour and warmth in every cup.
+                </p>
+            </div>
+            <div>
+                <p>
+                    Whether you love strong kadak chai or subtle herbal infusions, Sugandhi has a blend 
+                    that fits your mood, your day, and your story.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © <span id="year"></span> Sugandhi Tea. Brewed with warmth & care.
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
