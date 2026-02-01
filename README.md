@@ -20,13 +20,6 @@
   - Data Structures
   - CRUD Operations (Create, Read, Update, Delete)
 
-## Project Structure
-Student-Database-Management-System/
-│
-├── main file (source code)
-├── data file (student records)
-├── README.md
-
 ## How the System Works
 - User enters student details through the program interface.
 - Student data is stored persistently in a file or database.
